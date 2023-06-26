@@ -1,0 +1,100 @@
+"""
+    Rabbit less than secret protocol
+    Input: two secret shared values [x], [y]
+    Output:[w]_2=x<y
+    https://eprint.iacr.org/2021/119.pdf
+"""
+from Compiler import floatingpoint
+from Compiler import types
+from Compiler import util
+
+def LTS(x, y, k, M):
+    _k=k+1
+    # generate two edabits r, r'
+    r, rbits=sint.get_edabit(k, True)
+    r2, r2bits=sint.get_edabit(k, True)
+    
+    # step 1: Parties compute the values [b]=[r+y],[a]=[r'-x]
+    b=r+y
+    a=r2-x
+    # step 2: Parties open the values a and b, and compute T=b+a
+    a_c=a.reveal()
+    b_c=b.reveal()
+    T=a_c+b_c
+    abits=sbit.bit_decompose_clear(a_c, k)
+    bbits=sbit.bit_decompose_clear(b_c, k)
+    # step 3-a:
+    w1=floatingpoint.BITLT(bbits, rbits, k)
+    # step 3-b:
+    w2=floatingpoint.BITLT(abits, r2bits, k)
+    # step 3-c:
+    w3=T<b_c
+    # step 3-d:
+    """
+        Extend rbits, r2bits to k+1 before running the bit bit_adder
+        This allows as to be sure that the carry is captured the right way
+    """
+    extended_rbits=[sbits(0)]*(k+1)
+    extended_r2bits=[sbits(0)]*(k+1)
+    
+    for i in range(k):
+        extended_rbits[i]=rbits[i]
+        extended_r2bits[i]=r2bits[i]
+    
+    s=[sbits(0)]*(k+1)
+    s=sbits.bit_adder(extended_rbits, extended_r2bits, 0, True)
+    
+    # step 3-e:
+    w4=s[k+1]
+    # step 3-f:
+    Tbits=sbit.bit_decompose_clear(T, k)
+    _s=[sbits(0)]*k
+    for i in range(k):
+        _s[i]=s[i]
+    w5=floatingpoint.BITLT(Tbits, _s, k)
+    # step 4:
+    w=w1+w2+w3-w4-w5
+    return w
+"""
+    A function to convert sbit to sint
+    This is from the SCALE-MAMBA documentation
+    https://homes.esat.kuleuven.be/~nsmart/SCALE/Documentation-SCALE.pdf
+"""
+def conv(x_2):
+    # step 1: generate on r_p, r_2=dabit()
+    r_p, r_2=sint.get_dabit()
+    # step 2: 〈v〉2 ←〈x〉2 ⊕〈r〉2
+    v_2= x_2+r_2
+    # step 3: Open v
+    v=cint(v_2.reveal())
+    # step 4: 〈x〉p ←v + 〈r〉p −2 ·v ·〈r〉p
+    x_p=v+r_p-2*v*r_p
+    #print_ln("x<y= %s", x_p.reveal())
+    return x_p
+
+
+"""
+    This is the main program
+"""
+k=program.bit_length-1 #based on edabits requirement
+print_ln('Prime bit_length=  %s',k)
+n_threads=1
+count=100
+print_ln('count=  %s', count)
+print_ln('Starting Rabbit...')
+_x=sint.Array(2)
+_x[0]=sint(2)   # x value
+_x[1]=sint(10)  # y value
+
+w_2=sint.Array(count) # hold the result in binary
+w_p=sint.Array(count) # hold the final result which must be in arithmetic p domain  
+
+print_ln('x= %s, y= %s', _x[0].reveal(), _x[1].reveal())
+print_ln("===========================")
+#for i in range(1, 3, 1):
+@for_range_opt_multithread(n_threads, count)
+def _(i):
+    w_2= LTS(_x[0], _x[1], k, M)
+    w_p[i]=conv(w_2)
+    print_ln("expected=1, actuall=%s", w_p[i].reveal())
+print_ln("===========================")
