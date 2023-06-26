@@ -2,7 +2,7 @@
 
 This code is designed based on Rabbit paper.
 
-The code implements LTS prtocol as in figure 6.
+The code implements the LTS protocol as in Figure 6.
 
 Input: two secret shared values [x], [y]
 
@@ -14,7 +14,7 @@ https://eprint.iacr.org/2021/119.pdf
 
 To install the code follow the instructions
 ```
-1- Install MPSPDZ library at https://github.com/data61/MP-SPDZ.
+1- Install the MPSPDZ library at https://github.com/data61/MP-SPDZ.
 2- mv rabbit.mpc MP-SPDZ/Programs/Source
 ```
 
@@ -25,9 +25,9 @@ We set x=2, y=10
 
 x<y must equal 1 since 2<10.
 
-We set number of comparsions (count=100).
+We set the number of comparisons (count=100).
 
-All thes values can be changed in rabbit.mpc file.
+All these values can be changed in rabbit.mpc file.
 
 1- To compile the code run: 
     
@@ -40,13 +40,13 @@ All thes values can be changed in rabbit.mpc file.
     
     Scripts/highgear.sh rabbit
 
-Note the above above scripts can be used to benchmark communication accurately. However, to gain acurrate run-time benchmark then it requires to have two different machines. For that please follow the instructions on how to run MPSPDZ on differnet machines and follow the following instructions:
+Note the above scripts can be used to benchmark communication accurately. However, to gain an accurate run-time benchmark then it requires to have two different machines. For that please follow the instructions on how to run MPSPDZ on different machines and follow the following instructions:
 
-1- For P(OT) run for mahcine 0 and 1 consecutively:
+1- For P(OT) run for machines 0 and 1 consecutively:
 
     ./mascot-party.x 0 rabbit -pn 19755 -h localhost -N 2
     ./mascot-party.x 1 rabbit -pn 19755 -h localhost -N 2
-2- For P(HE) run for mahcine 0 and 1 consecutively:
+2- For P(HE) run for machines 0 and 1 consecutively:
 
     ./highgear-party.x 0 rabbit -pn 15093 -h localhost -N 2
     ./highgear-party.x 1 rabbit -pn 15093 -h localhost -N 2
