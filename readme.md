@@ -46,7 +46,7 @@ Note the above scripts can be used to benchmark communication accurately. Howeve
 
 2- For P(OT) run for machines 0 and 1 consecutively:
 
-    ./mascot-party.x 0 rabbit -ip -ip HOSTS -N 2
+    ./mascot-party.x 0 rabbit -ip HOSTS -N 2
     ./mascot-party.x 1 rabbit -ip HOSTS -N 2
 3- For P(HE) run for machines 0 and 1 consecutively:
 
