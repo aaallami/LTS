@@ -42,11 +42,13 @@ All these values can be changed in rabbit.mpc file.
 
 Note the above scripts can be used to benchmark communication accurately. However, to gain an accurate run-time benchmark then it requires to have two different machines. For that please follow the instructions on how to run MPSPDZ on different machines and follow the following instructions:
 
-1- For P(OT) run for machines 0 and 1 consecutively:
+1- Set the ip addresses in a MPSPDZ/HOST.txt file 
 
-    ./mascot-party.x 0 rabbit -pn 19755 -h localhost -N 2
-    ./mascot-party.x 1 rabbit -pn 19755 -h localhost -N 2
-2- For P(HE) run for machines 0 and 1 consecutively:
+2- For P(OT) run for machines 0 and 1 consecutively:
 
-    ./highgear-party.x 0 rabbit -pn 15093 -h localhost -N 2
-    ./highgear-party.x 1 rabbit -pn 15093 -h localhost -N 2
+    ./mascot-party.x 0 rabbit -ip -ip HOSTS -N 2
+    ./mascot-party.x 1 rabbit -ip HOSTS -N 2
+3- For P(HE) run for machines 0 and 1 consecutively:
+
+    ./highgear-party.x 0 rabbit -ip HOSTS -N 2
+    ./highgear-party.x 1 rabbit -ip HOSTS -N 2
