@@ -43,7 +43,7 @@ All these values can be changed in rabbit.mpc file.
 Note the above scripts can be used to benchmark communication accurately. However, to gain an accurate run-time benchmark then it requires to have two different machines. Follow the instructions on how to run the code on different machines. For more information, we advise the reader to https://mp-spdz.readthedocs.io/en/latest/index.html.
 
 
-1- Set the ip addresses in a MPSPDZ/HOST.txt file 
+1- Set the IP addresses in a MPSPDZ/HOST.txt file 
 
 2- For P(OT) run for machines 0 and 1 consecutively:
 
