@@ -1,4 +1,4 @@
-# Rabbit less than secret protocol (LTS)
+# Rabbit Less Than Secret protocol (LTS)
 
 This code is designed based on Rabbit paper.
 
