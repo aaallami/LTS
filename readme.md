@@ -1,21 +1,18 @@
-# Rabbit Less Than Secret protocol (LTS)
+# Less Than Secret protocol (LTS+)
 
-This code is designed based on Rabbit paper.
-
-The code implements the LTS protocol as in Figure 6.
+This code is designed based on LTS+ protocol.
 
 Input: two secret shared values [x], [y]
 
 Output:[w]_p=x<y
-
-https://eprint.iacr.org/2021/119.pdf
 
 ## Installation
 
 To install the code follow the instructions
 ```
 1- Install the MPSPDZ library at https://github.com/data61/MP-SPDZ.
-2- mv rabbit.mpc MP-SPDZ/Programs/Source
+2- mv mpc MP-SPDZ/Programs/Source
+
 ```
 
 ## Usage
