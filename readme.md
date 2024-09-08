@@ -46,3 +46,11 @@ Note the above scripts can be used to benchmark communication accurately. Howeve
 
     ./highgear-party.x 0 LTS+ -ip HOSTS -N 2
     ./highgear-party.x 1 LTS+ -ip HOSTS -N 2
+# ReLU The ReLU (Rectified Linear Unit)
+ReLU function is a popular activation function used in neural networks. It's a simple yet powerful function that introduces non-linearity, helping networks learn complex relationships in data.
+Here's how ReLU works:
+For positive or zero input: It returns the input value itself.
+For negative input: It returns zero.
+Mathematically:
+ReLU(x) = max(0, x)
+We implement ReLU fucntion based on our optimized LTS+ above and can be tested the same way.
