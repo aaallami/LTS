@@ -11,8 +11,8 @@ Output:[w]_p=x<y
 To install the code follow the instructions
 ```
 1- Install the MPSPDZ library at https://github.com/data61/MP-SPDZ.
-2- mv mpc MP-SPDZ/Programs/Source
-
+2- mv LTS+.mpc MP-SPDZ/Programs/Source
+3- mv SC_fun.py MP-SPDZ/Compiler
 ```
 
 ## Usage
