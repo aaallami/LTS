@@ -1,0 +1,16 @@
+from Compiler import SC_fun
+
+# Set the bit length based on edabit
+bit_length = program.bit_length
+
+@for_range_opt_multithread(2, 10)
+def compute_lts(i):
+    """Computes the Least Than Secret (LTS) of two values and prints the result."""
+    result = SC_fun.LTS(sint(15), sint(10), bit_length).reveal()
+    print_ln('LTS=%s', result)
+
+@for_range_opt_multithread(2, 10)
+def compute_relu(i):
+    """Computes the ReLU (Rectified Linear Unit) of a value and prints the result."""
+    result = SC_fun.ReLU(sint(15), bit_length).reveal()
+    print_ln('ReLU=%s', result)
